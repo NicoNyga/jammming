@@ -8,14 +8,13 @@ import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
 
-  const search = () => {
-    const [searchInput, setSearchInput] = useState();
-  }
+
 
   return (
     <div className="App">
       <h1>Jamming</h1>
-      <SearchBar onSearch={search}/>
+      <SearchBar />
+      <SearchResults />
     </div>
   );
 }
