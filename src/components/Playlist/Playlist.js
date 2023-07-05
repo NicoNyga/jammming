@@ -37,7 +37,7 @@ const Playlist = ({tracks}) => {
         // name the playlist 
         // remove items from playlist
         // recieve choices from search results
-        // save the playlistto spotify
+        // save the playlist to spotify
 
         <>
         <div>

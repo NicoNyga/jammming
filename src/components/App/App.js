@@ -15,6 +15,7 @@ function App() {
       <h1>Jamming</h1>
       <SearchBar />
       <SearchResults />
+      <Playlist />
     </div>
   );
 }

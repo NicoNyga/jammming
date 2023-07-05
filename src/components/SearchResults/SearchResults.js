@@ -14,7 +14,7 @@ const SearchResults = ({ query, results }) => {
         {results.map((result) => (
             <>
                 <div key={result.id}>{result.title}</div>
-                <button onClick={addChoiceToPlaylist}>+ Add to Playlist</button>
+                <button onClick={addChoiceToPlaylist}>+</button>
             </>
         ))}
     </div>
