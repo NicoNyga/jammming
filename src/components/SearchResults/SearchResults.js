@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Tracklist from '../Tracklist';
 import styles from './SearchResults.module.css';
 
 const SearchResults = ({ query, results }) => {
@@ -11,12 +11,7 @@ const SearchResults = ({ query, results }) => {
     return (
     <div className={styles.SearchResults}>
         <h2>Search Results for "{query}"</h2>
-        {results.map((result) => (
-            <>
-                <div key={result.id}>{result.title}</div>
-                <button onClick={addChoiceToPlaylist}>+</button>
-            </>
-        ))}
+        <Tracklist tracks={results} />       
     </div>
   );
 };

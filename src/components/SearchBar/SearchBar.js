@@ -12,11 +12,11 @@ const SearchBar = () => {
         const handleSearch = () => {
             //search logic goes here
             const dummyResults = [
-                { id: 1, title: 'song 1'},
-                { id: 2, title: 'song 2'},
-                { id: 3, title: 'song 3'}
+                { id: 1, title: 'song 1', name: 'artist 1', album: 'album 1'},
+                { id: 2, title: 'song 2', name: 'artist 2', album: 'album 2'},
+                { id: 3, title: 'song 3', name: 'artist 3', album: 'album 3'}
             ];
-
+            //pass results to tracklist which will render the results back to searchresults for presentation?
             setResults(dummyResults);
             setSearchQuery('');
         };
@@ -24,7 +24,6 @@ const SearchBar = () => {
         const handleInputChange = (e) => {
             setSearchQuery(e.target.value);
         };
-
 
   return (
     <div className={styles.SearchBar}>
