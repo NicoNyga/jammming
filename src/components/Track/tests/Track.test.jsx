@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Track} from '../Track';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 
 describe('<Track />', () => {
@@ -23,12 +23,12 @@ describe('<Track />', () => {
             removedTrack = track;
         };
 
-        const { getByText } = render(
+        render(
             <Track track={track} onAdd={onAdd} onRemove={onRemove} />
         );
 
-        const addButton = getByText('+');
-        const removeButton = getByText('-');
+        const addButton = screen.getByText('+');
+        const removeButton = screen.getByText('-');
 
         //Test adding track
         fireEvent.click(addButton);
@@ -39,11 +39,11 @@ describe('<Track />', () => {
         expect(removedTrack).toEqual(track);
 
         //Test if track object returned correctly
-        const trackTitle = getByText('Song 1');
+        const trackTitle = screen.getByText('Song 1');
         expect(trackTitle).toBeInTheDocument();
-        const trackArtist = getByText('Artist 1');
+        const trackArtist = screen.getByText('Artist 1');
         expect(trackArtist).toBeInTheDocument();
-        const trackAlbum = getByText('Album 1');
+        const trackAlbum = screen.getByText('Album 1');
         expect(trackAlbum).toBeInTheDocument();
 
         const tree = renderer
@@ -54,4 +54,4 @@ describe('<Track />', () => {
 
 });
 
-//test her first, then go to Tracklist
+//test here first, then go to Tracklist

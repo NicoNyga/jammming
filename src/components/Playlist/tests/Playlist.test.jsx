@@ -1,13 +1,13 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import {Playlist} from '../Playlist';
 
 describe('<Playlist />', () => {
 test('handles naming of playlist correctly', () => {
-        const { getByPlaceholderText, getByTitle } = render(<Playlist />);
+        render(<Playlist />);
 
-        const input = getByPlaceholderText('Enter playlist name');
-        const saveButton = getByTitle('Remove');
+        const input = screen.getByPlaceholderText('Enter playlist name');
+        const saveButton = screen.getByTitle('Remove');
 
         fireEvent.change(input, { target: { value: 'Playlist'}});
         fireEvent.click(saveButton);
