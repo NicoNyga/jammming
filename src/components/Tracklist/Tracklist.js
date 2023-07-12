@@ -1,22 +1,24 @@
 import React from 'react';
-import Track from '../Track';
+import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
-import { Button } from '@mui/material';
 
-const Tracklist = ({ tracks }) => {
+const Tracklist = ({ tracks, onAdd }) => {
     return(
         
         <div className={styles.Tracklist}>
 
          {tracks.map((track) => (
         
-            <Track key={track.id} track={track}>
-                <Button>+</Button>
-            </Track> 
+            <Track 
+                key={track.id} 
+                track={track}
+                onAdd={onAdd}
+                />
+                 
         
-                 )
-            )};
+                 ))};
         </div>
-)};
+    );
+};
 
 export default Tracklist;
