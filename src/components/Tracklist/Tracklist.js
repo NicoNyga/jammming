@@ -16,7 +16,7 @@ const Tracklist = ({ tracks, onAdd }) => {
                 />
                  
         
-                 ))};
+                 ))}
         </div>
     )};
 };

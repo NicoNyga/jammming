@@ -12,10 +12,13 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <h1>Jamming</h1>
-      <SearchBar />
-      <SearchResults />
-      <Playlist />
+      
+      <div className={styles.floatBox}>
+        <h1 className={styles.h1}>JAMMMING</h1>
+        <SearchBar />
+        <SearchResults />
+        <Playlist />
+      </div>
     </div>
   );
 }

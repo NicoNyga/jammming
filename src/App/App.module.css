@@ -1,3 +1,32 @@
 .App {
-  
+    font-family: 'Major Mono Display', monospace;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-image: url(./jack-barton-6hDusvjc_IQ-unsplash.jpg);
+    background-size: 100vw;
+    background-position: bottom;
+    height: 100vh;
+}
+
+.floatBox {
+    width: 70vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    background-color: hsla(180, 100%, 27%, 0.912);
+    border-radius: 50%;
+}
+
+.h1 {
+    font-family: 'Major Mono Display', cursive;
+    font-size: 50px;
+    text-align: center;
+    color: hsl(31, 100%, 35%);
+    width: fit-content;
+    align-self: center;
+    padding: 5px 10px 5px 10px;
+    border-radius: 3px;
 }
