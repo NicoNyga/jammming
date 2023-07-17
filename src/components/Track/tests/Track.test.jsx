@@ -54,4 +54,4 @@ describe('<Track />', () => {
 
 });
 
-//test here first, then go to Tracklist
+//test ---TRACK--- -> tracklist -> searchResults -> Playlist -> SearchBar -> App

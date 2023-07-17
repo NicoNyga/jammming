@@ -8,12 +8,12 @@ const SearchResults = ({ query, results }) => {
       //Logic to add the selected track to the playlist
     }
   
-    return (
+   if (query) {return (
     <div className={styles.SearchResults}>
         <h2>Search Results for "{query}"</h2>
         <Tracklist tracks={results} onAdd={ addChoiceToPlaylist }/>       
     </div>
-  );
+  )};
 };
 
 export default SearchResults;

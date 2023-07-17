@@ -20,5 +20,4 @@ test('handles naming of playlist correctly', () => {
 
 });
 
-//first tracklist - next: searchbar
-
+//test track -> tracklist -> searchResults -> ---PLAYLIST--- -> SearchBar -> App

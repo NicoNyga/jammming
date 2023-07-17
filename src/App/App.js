@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./App.module.css";
 
-import Playlist from '../Playlist/Playlist';
-import SearchBar from '../SearchBar/SearchBar';
-import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../components/Playlist/Playlist';
+import SearchBar from '../components/SearchBar/SearchBar';
+import SearchResults from '../components/SearchResults/SearchResults';
 
 
 function App() {

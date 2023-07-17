@@ -3,7 +3,7 @@ import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
 const Tracklist = ({ tracks, onAdd }) => {
-    return(
+    if (tracks) {return(
         
         <div className={styles.Tracklist}>
 
@@ -18,7 +18,7 @@ const Tracklist = ({ tracks, onAdd }) => {
         
                  ))};
         </div>
-    );
+    )};
 };
 
 export default Tracklist;

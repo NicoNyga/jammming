@@ -17,3 +17,4 @@ test('handles search query correctly', () => {
 
 });
 
+//test track -> tracklist -> searchResults -> Playlist -> ---SEARCHBAR--- -> App
