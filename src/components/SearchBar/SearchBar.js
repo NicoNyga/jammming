@@ -1,43 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import styles from './SearchBar.module.css';
-import SearchResults from '../SearchResults/SearchResults';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+        const [query, setQuery] = useState('');
 
-
-        const [searchQuery, setSearchQuery] = useState('');
-        const [results, setResults] = useState([]);
-
-        const handleSearch = () => {
+        const handleQueryChange = useCallback((e) => {
             //search logic goes here
-            const dummyResults = [
-                { id: 1, title: 'song 1', name: 'artist 1', album: 'album 1'},
-                { id: 2, title: 'song 2', name: 'artist 2', album: 'album 2'},
-                { id: 3, title: 'song 3', name: 'artist 3', album: 'album 3'}
-            ];
-            //pass results to tracklist which will render the results back to searchresults for presentation?
-            setResults(dummyResults);
-            setSearchQuery('');
-        };
+            setQuery(e.target.value);
+            }, []);
 
-        const handleInputChange = (e) => {
-            setSearchQuery(e.target.value);
-        };
+        const search = useCallback(() => {
+            props.onSearch(query);
+        }, [props, query]);
+
+        
+
+
 
   return (
     <div className={styles.SearchBar}>
         <input 
             placeholder='Search for a Song Name here' 
-            onChange={handleInputChange}
-            value={searchQuery}
+            onChange={handleQueryChange}
             type='text'
         />
-        <button onClick={handleSearch}>
+        <button onClick={search}>
             SEARCH
         </button>
 
-        <SearchResults query={searchQuery} results={results} />
 
     </div>
   )

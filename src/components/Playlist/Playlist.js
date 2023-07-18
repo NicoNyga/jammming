@@ -1,25 +1,17 @@
-import React, { useState }from 'react';
-import Tracklist from '../Tracklist/Tracklist';
+import React, { useCallback } from 'react';
+import TrackList from '../Tracklist/Tracklist';
 import styles from './Playlist.module.css';
 
 
-const Playlist = () => {
+const Playlist = (props) => {
+    const handleNameChange = useCallback(
+        (event) => {
+            props.onNameChange(event.target.value);
+        },
+        [props]
+    );
 
-    const [playlistName, setPlaylistName] = useState('');
-    const [playlistTracks, setPlaylistTracks] = useState([]);
 
-    
-    const addTrackToPlaylist = (track) => {
-        setPlaylistTracks([...playlistTracks, track]);
-    };
-
-    const removeTrackFromPlaylist = (track) => {
-        setPlaylistTracks(playlistTracks.filter((item) => item.id !== track.id));
-    };
-
-    const savePlaylist = () => {
-        // TODO: save playlist to spotify
-    }
 
     return (
         //return a song playlist component with option to:
@@ -28,24 +20,21 @@ const Playlist = () => {
         // recieve choices from search results
         // save the playlist to spotify
 
-        <>
+        
         <div className={styles.Playlist}>
             <h2>Playlist</h2>
             <input
-                    placeholder="Enter playlist name"
-                    value={playlistName}
-                    onChange={(e) => setPlaylistName(e.target.value)}
-                    type='text'
+                    defaultValue={"New Playlist"}
+                    onChange={handleNameChange}
                 />
-                <h2>{ playlistName }</h2>
-                <Tracklist
-                    tracks={playlistTracks}
-                    onAdd={addTrackToPlaylist}
-                    onRemove={removeTrackFromPlaylist}
+                <TrackList
+                    tracks={props.playlistTracks}
+                    isRemoval={true}
+                    onRemove={props.onRemove}
                     />
-                <button onClick={savePlaylist}>Save Playlist</button>
+                <button onClick={props.onSave}>Save Playlist</button>
                 </div>
-        </>
+        
     );
   
 };

@@ -1,23 +1,46 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import styles from './Track.module.css';
 
-const Track = ({ track, onAdd, onRemove }) => {
+const Track = (props) => {
 
-    const handleAddClick = () => {
-        onAdd(track);
-    }
+    const addTrack = useCallback(
+        (e) => {
+            props.onAdd(props.track);
+        },
+        [props]
+    );
 
-    const handleRemoveClick = () => {
-        onRemove(track);
-    }
+    const removeTrack = useCallback(
+        (e) => {
+            props.onRemove(props.track);
+        },
+        [props]
+    );
+
+    const renderAction = () => {
+        if (props.isRemoval) {
+            return (
+                <button className={styles.trackAction} onClick={removeTrack}>
+                    -
+                </button>
+            );
+        }
+        return (
+            <button className={styles.trackAction} onClick={addTrack}>
+                +
+            </button>
+        );
+    };
+
     return (
         <div className={styles.Track}>
-            <h3>{track.title}</h3>
-            <p>Artist: {track.name}</p>
-            <p>Album: {track.album} </p>
-            <button onClick={ handleAddClick }>+</button>
-            <button onClick={ handleRemoveClick }>-</button>
+            <h3>{props.track.name}</h3>
+            <p>Artist: {props.track.artist}</p>
+            <p>Album: {props.track.album} </p>
+            <div>
+                {renderAction()}
+            </div>
         </div>
     );
 
