@@ -1,3 +1,4 @@
+//SearchResults.js
 import React from 'react';
 import Tracklist from '../Tracklist/Tracklist';
 import styles from './SearchResults.module.css';

@@ -1,3 +1,4 @@
+//Playlist.js
 import React, { useCallback } from 'react';
 import TrackList from '../Tracklist/Tracklist';
 import styles from './Playlist.module.css';
@@ -11,7 +12,9 @@ const Playlist = (props) => {
         [props]
     );
 
-
+    const handleSavePlaylist = useCallback(() => {
+            props.onSave();
+        }, [props]);
 
     return (
         //return a song playlist component with option to:
@@ -24,7 +27,7 @@ const Playlist = (props) => {
         <div className={styles.Playlist}>
             <h2>Playlist</h2>
             <input
-                    defaultValue={"New Playlist"}
+                    value={props.playlistName}
                     onChange={handleNameChange}
                 />
                 <TrackList
@@ -32,7 +35,7 @@ const Playlist = (props) => {
                     isRemoval={true}
                     onRemove={props.onRemove}
                     />
-                <button onClick={props.onSave}>Save Playlist</button>
+                <button onClick={handleSavePlaylist}>Save Playlist</button>
                 </div>
         
     );
