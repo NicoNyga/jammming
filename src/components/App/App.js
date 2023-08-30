@@ -1,10 +1,10 @@
 //App.js
-import React, { useState, useEffect, useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./App.module.css";
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
-import { fetchData } from "../util/Spotify";
+import { fetchData, savePlaylist } from "../util/Spotify";
 
 const App = () => {
 
@@ -31,77 +31,81 @@ const App = () => {
   }, []);
   useEffect(() => {
 
-    fetchData('').then(setResults);
+    setResults([]);
   }, []);
 
 
   const search = async (query) => {
+    if (query == null || query.trim() == '') {
+      setResults([]);
+      return
+    }
     try {
       const response = await fetchData(query);
-      setResults(response);
+      setResults(response.tracks.items);
     } catch (error) {
       //handle error
       console.error(error);
     }
   };
 
-      
+
   const addTrackToPlaylist = useCallback((track) => {
-      if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
-        return;
+    if (playlistTracks.some((savedTrack) => savedTrack.id === track.id))
+      return;
 
-      setPlaylistTracks((prevTracks) => [...prevTracks, track]);
+    setPlaylistTracks((prevTracks) => [...prevTracks, track]);
   },
-  [playlistTracks]
-);
+    [playlistTracks]
+  );
 
-const removeTrackFromPlaylist = useCallback((track) => {
+  const removeTrackFromPlaylist = useCallback((track) => {
     setPlaylistTracks((prevTracks) =>
-    prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
+      prevTracks.filter((currentTrack) => currentTrack.id !== track.id)
     );
-}, []);
+  }, []);
 
-const updatePlaylistName = useCallback((name) => {
-  setPlaylistName(name);
-}, []);
+  const updatePlaylistName = useCallback((name) => {
+    setPlaylistName(name);
+  }, []);
 
-const savePlaylist = async () => {
-  // save logic to save to Spotify
-  const trackUris = playlistTracks.map((track) => track.uri);
-  try {
-    await fetchData.savePlaylist(playlistName, trackUris);
-    setPlaylistName('New Playlist');
-    setPlaylistTracks([]);
-  } catch (error) {
-    // handle error
-    console.error(error);
-  }
-};
+  const savePlaylist = async () => {
+    // save logic to save to Spotify
+    const trackUris = playlistTracks.map((track) => track.uri);
+    try {
+      await savePlaylist(playlistName, trackUris);
+      setPlaylistName('New Playlist');
+      setPlaylistTracks([]);
+    } catch (error) {
+      // handle error
+      console.error(error);
+    }
+  };
 
-return (
-  <div className={styles.App}>
-    <div className={styles.floatBox}>
-      <h1 className={styles.h1}>JAMMMING</h1>
-      {!authenticated ? (
-        <a href="https://accounts.spotify.com/authorize?client_id=bdc784d639bf41e6a1ba52397ae87c89&redirect_uri=http://localhost:3000/&response_type=token&scope=user-read-private user-read-email">
-          <button>Login with Spotify</button>
-        </a>
-      ) : (
-        <>
-          <SearchBar onSearch={search} />
-          <SearchResults searchResults={results} onAdd={addTrackToPlaylist} />
-          <Playlist
-            playlistName={playlistName}
-            playlistTracks={playlistTracks}
-            onNameChange={updatePlaylistName}
-            onRemove={removeTrackFromPlaylist}
-            onSave={savePlaylist}
-          />
-        </>
-      )}
+  return (
+    <div className={styles.App}>
+      <div className={styles.floatBox}>
+        <h1 className={styles.h1}>JAMMMING</h1>
+        {!authenticated ? (
+          <a href="https://accounts.spotify.com/authorize?client_id=bdc784d639bf41e6a1ba52397ae87c89&redirect_uri=http://localhost:3000/&response_type=token&scope=user-read-private user-read-email">
+            <button>Login with Spotify</button>
+          </a>
+        ) : (
+          <>
+            <SearchBar onSearch={search} />
+            <SearchResults searchResults={results} onAdd={addTrackToPlaylist} />
+            <Playlist
+              playlistName={playlistName}
+              playlistTracks={playlistTracks}
+              onNameChange={updatePlaylistName}
+              onRemove={removeTrackFromPlaylist}
+              onSave={savePlaylist}
+            />
+          </>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 

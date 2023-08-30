@@ -37,8 +37,8 @@ const Track = (props) => {
     return (
         <div className={styles.Track}>
             <h3>{props.track.name}</h3>
-            <p>Artist: {props.track.artist}</p>
-            <p>Album: {props.track.album} </p>
+            <p>Artist: {props.track.artists.map(a => a.name).join(', ')}</p>
+            <p>Album: {props.track.album.name} </p>
             <div>
                 {renderAction()}
             </div>

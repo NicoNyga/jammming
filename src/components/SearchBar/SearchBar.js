@@ -10,8 +10,8 @@ const SearchBar = (props) => {
         const search = useCallback(async () => {
             //spotify search logic
             try {
-                const response = await fetchData(query);
-                props.onSearch(response);
+  //              const response = await fetchData(query);
+                props.onSearch(query);
             } catch (error) {
                 // handle error
                 console.error(error);
